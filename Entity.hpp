@@ -113,7 +113,7 @@ namespace rage
 		explicit arg_t(float f) : type(val_t::Float), v { f } { }
 		explicit arg_t(const std::string& str) : type(val_t::String), v { new char[str.length() + 1] } { memcpy(v.str, str.c_str(), str.length()); v.str[str.length()] = 0; }
 		explicit arg_t(entity_t entityType, entityId_t id, rage::IEntity *entity) : type(val_t::Entity), v{ entityType, id, entity } { }
-		explicit arg_t(const arg_t& r) : type(val_t::Null) { *this = r; }
+		arg_t(const arg_t& r) : type(val_t::Null) { *this = r; }
 
 		void SetNull() { DeleteString(); type = val_t::Null; }
 		void SetBoolean(bool b) { DeleteString(); type = val_t::Boolean; v.b = b; }
