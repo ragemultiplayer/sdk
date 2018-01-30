@@ -210,9 +210,9 @@ namespace rage
 		template<typename ...Args>
 		void Call(const std::string& eventName, Args&&... args)
 		{
-			const int count = sizeof...(Args);
+			constexpr auto count = sizeof...(args);
 
-			if (count == 0)
+			if constexpr (count == 0)
 				this->_Call(eventName);
 			else
 			{
@@ -224,9 +224,9 @@ namespace rage
 		template<typename ...Args>
 		void Invoke(uint64_t hash, Args&&... args)
 		{
-			const int count = sizeof...(Args);
+			constexpr auto count = sizeof...(args);
 
-			if (count == 0)
+			if constexpr (count == 0)
 				this->_Invoke(hash);
 			else
 			{

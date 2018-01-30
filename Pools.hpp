@@ -27,9 +27,9 @@ namespace rage
 		template<typename ...Args>
 		void Call(const std::string& eventName, Args&&... args)
 		{
-			const int count = sizeof...(Args);
+			constexpr auto count = sizeof...(args);
 
-			if (count == 0)
+			if constexpr (count == 0)
 				this->_Call(eventName);
 			else
 			{
@@ -41,9 +41,9 @@ namespace rage
 		template<typename ...Args>
 		void CallInRange(const vector3& position, float range, dimensionId_t dimension, const std::string& eventName, Args&&... args)
 		{
-			const int count = sizeof...(Args);
+			constexpr auto count = sizeof...(args);
 
-			if (count == 0)
+			if constexpr (count == 0)
 				this->_CallInRange(position, range, dimension, eventName);
 			else
 			{
@@ -55,9 +55,9 @@ namespace rage
 		template<typename ...Args>
 		void CallInDimension(dimensionId_t dimension, const std::string& eventName, Args&&... args)
 		{
-			const int count = sizeof...(Args);
+			constexpr auto count = sizeof...(args);
 
-			if (count == 0)
+			if constexpr (count == 0)
 				this->_CallInDimension(dimension, eventName);
 			else
 			{
@@ -69,9 +69,9 @@ namespace rage
 		template<typename ...Args>
 		void Invoke(uint64_t hash, Args&&... args)
 		{
-			const int count = sizeof...(Args);
+			constexpr auto count = sizeof...(args);
 
-			if (count == 0)
+			if constexpr (count == 0)
 				this->_Invoke(hash);
 			else
 			{
@@ -83,9 +83,9 @@ namespace rage
 		template<typename ...Args>
 		void InvokeInRange(const vector3& position, float range, dimensionId_t dimension, uint64_t hash, Args&&... args)
 		{
-			const int count = sizeof...(Args);
+			constexpr auto count = sizeof...(args);
 
-			if (count == 0)
+			if constexpr (count == 0)
 				this->_InvokeInRange(position, range, dimension, hash);
 			else
 			{
@@ -97,9 +97,9 @@ namespace rage
 		template<typename ...Args>
 		void InvokeInDimension(dimensionId_t dimension, uint64_t hash, Args&&... args)
 		{
-			const int count = sizeof...(Args);
+			constexpr auto count = sizeof...(args);
 
-			if (count == 0)
+			if constexpr (count == 0)
 				this->_InvokeInDimension(dimension, hash);
 			else
 			{
