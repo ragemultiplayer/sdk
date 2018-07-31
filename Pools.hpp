@@ -67,6 +67,20 @@ namespace rage
 		}
 
 		template<typename ...Args>
+		void CallFor(std::vector<rage::IPlayer*> const& players, const std::string& eventName, Args&&... args)
+		{
+			const int count = sizeof...(Args);
+
+			if (count == 0)
+				this->_CallFor(players, eventName);
+			else
+			{
+				arg_t arguments[count] = { arg_t(std::forward<Args>(args))... };
+				this->_CallFor(players, eventName, arguments, count);
+			}
+		}
+
+		template<typename ...Args>
 		void Invoke(uint64_t hash, Args&&... args)
 		{
 			const int count = sizeof...(Args);
@@ -105,6 +119,20 @@ namespace rage
 			{
 				arg_t arguments[count] = { arg_t(std::forward<Args>(args))... };
 				this->_InvokeInDimension(dimension, hash, arguments, count);
+			}
+		}
+
+		template<typename ...Args>
+		void InvokeFor(std::vector<rage::IPlayer*> const& players, uint64_t hash, Args&&... args)
+		{
+			const int count = sizeof...(Args);
+
+			if (count == 0)
+				this->_InvokeFor(players, hash);
+			else
+			{
+				arg_t arguments[count] = { arg_t(std::forward<Args>(args))... };
+				this->_InvokeFor(players, hash, arguments, count);
 			}
 		}
 	};
