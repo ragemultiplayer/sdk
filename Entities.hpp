@@ -34,15 +34,6 @@ namespace rage
 		uint8_t colour;
 	};
 
-	struct headBlend_t
-	{
-		uint8_t m_shape[3];
-		uint8_t m_skin[3];
-		float m_shapeMix;
-		float m_skinMix;
-		float m_thirdMix;
-	};
-
 	enum class material_t : uint8_t
 	{
 		Color,
@@ -79,11 +70,7 @@ namespace rage
 	};
 
 	using Entity =
-#ifdef IS_MP
-		multiplayer::Entity;
-#else
 		IEntity;
-#endif
 
 	class IPlayer
 		: public Entity
@@ -125,6 +112,13 @@ namespace rage
 		virtual void RemoveDecoration(uint32_t collection, uint32_t overlay) = 0;
 		virtual void SetDecoration(uint32_t collection, uint32_t overlay) = 0;
 		virtual void SetDecorations(std::vector<std::pair<uint32_t, uint32_t>> decorations) = 0;
+		
+		virtual void ClearDecorations() = 0;
+
+		virtual void EnableVoiceTo(IPlayer *target) = 0;
+		virtual void DisableVoiceTo(IPlayer *target) = 0;
+
+		virtual std::vector<IPlayer*> GetVoiceListeners() = 0;
 		
 		virtual void Eval(const std::string& code) = 0;
 
