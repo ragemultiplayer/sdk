@@ -1,5 +1,6 @@
 cmake_minimum_required( VERSION 3.0.2 )
 project( shared_lib CXX )
 set( SOURCE_LIB example.cpp )
+set( CMAKE_CXX_STANDARD 17 )
 add_library( example SHARED ${SOURCE_LIB} )
 add_compile_options( -std=gnu++1y -lstdc++ -fPIC)
